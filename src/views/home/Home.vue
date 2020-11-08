@@ -1,56 +1,52 @@
 <template>
-  <div class="home">
-	  <scroll ref="scroll" class="scroll">
-		  <filter-list></filter-list>
-		  <input class="username" v-model="username"/>
-		  <input class="password" v-model="pwd0"/>
-		  <button @click="btnClick">submit</button>
-		  <list @refresh="refresh" :gradeList="gradeList"></list>
-	  </scroll>
-  </div>
+	<div>
+		<Menu></Menu>
+		<div class="home">
+			  <filter-list></filter-list>
+			  <list></list>
+		</div>
+	</div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'Home',
   components: {
 	  List: () => import('./childComps/List'),
-	  Scroll: () => import('../.././components/common/scroll/Scroll'),
-	  FilterList: () => import('./childComps/FilterList')
+	  FilterList: () => import('./childComps/FilterList'),
+	  Menu: () => import('../.././components/common/menu/Menu')
   },
   data(){
 	  return{
 		  username: '20182762',
 		  pwd0: '12365478a',
-		  gradeList: null,
 		  position: 0,
 		  activeKey: 0
 	  }
   },
+  mounted() {
+		console.log('aaa')
+  	
+  },
   methods:{
-	  btnClick(){
+/* 	  btnClick(){
 		  console.log('aaa')
-		  axios.post('http://localhost:5000/test',{
-			  username: this.username,
-			  pwd0: this.pwd0
-			},
-		  ).then((res) => {
-			  this.gradeList = res.data.lastList
-			  this.position = res.data.position
-		  })
-	  },
-	  refresh(){
-		  this.$refs.scroll.refresh()
-	  }
+		  
+	  }, */
   }
 }
 </script>
 <style scoped>
 	.home{
 		position: relative;
-		height: 93vh;
+		height: 94vh;
+		background-image: url(../../assets/img/bd443b8d8060e3f6e55144230bbf4435435dbd97.jpg@1320w_1866h.webp.jpg);
+		background-size: 100vw 100vh;
+		overflow: auto;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch; 
+		-webkit-transform: translateZ(0px)
 	}
 	.scroll{
 	   position: absolute;

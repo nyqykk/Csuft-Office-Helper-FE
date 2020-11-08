@@ -11,6 +11,7 @@ Vue.use(Helpers);
 Vue.use(MuseUI);
 
 Vue.config.productionTip = false
+Vue.prototype.$bus = new Vue()
 
 new Vue({
   router,

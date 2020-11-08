@@ -13,7 +13,8 @@
     name: 'Scroll',
     mounted(){
       this.scroll = new Bscroll(this.$refs.wrapper,{
-        click: true
+        click: true,
+		preventDefault: true
       })
 	},
     data(){

@@ -8,15 +8,26 @@
 	<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
 	      rel="stylesheet">
     <title><%= htmlWebpackPlugin.options.title %></title>
+	
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
 	<script>
+		    //常规情况下js根据屏幕宽度动态计算
+		!(function(doc, win) {
+		    var docEle = doc.documentElement,
+		        evt = "onorientationchange" in window ? "orientationchange" : "resize",
+		        fn = function() {
+		            var width = docEle.clientWidth;
+		            width && (docEle.style.fontSize = 12 * (width / 320) + "px");
+		        };
 		
+		    win.addEventListener(evt, fn, false);
+		    doc.addEventListener("DOMContentLoaded", fn, false);
+		
+		}(document, window));
+
 	</script>
   </body>
 </html>

@@ -1,19 +1,25 @@
 <template>
-	<div class="top-div">
-		<div class="wrap" v-for="(item, index) in gradeList">
-			<div class="top">
-				<div class="img-div"><img src="../../../assets/img/b.png" /></div>
-				<div class="class-num">课程号:{{item.classNum}}</div>
-				<div class="top-right">学年学期:{{item.time}}</div>
-			</div>
-			<div class="center">
-				<div>课程名:{{item.className}}</div>
-				<div class="center-div">
-					<div>成绩:{{item.grade}}</div>
-					<div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{item.studyStatus}}</div>
+	<div>
+		<div v-if="checkState">
+			<div class="wrap" v-for="(item, index) in ($store.state.gradeList)">
+				<div class="top">
+					<div class="img-div"><img src="../../../assets/img/b.png" /></div>
+					<div class="class-num">课程号:{{item.classNum}}</div>
+					<div class="top-right">学年学期:{{item.time}}</div>
 				</div>
-				<div class="credit">学分:{{item.credit}}</div>
+				<div class="center">
+					<div>课程名:{{item.className}}</div>
+					<div class="center-div">
+						<div>成绩:{{item.grade}}</div>
+						<div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{item.studyStatus}}</div>
+					</div>
+					<div class="credit">学分:{{item.credit}}</div>
+				</div>
 			</div>
+		</div>
+		
+		<div v-else>
+			{{$store.state.gradeList}}
 		</div>
 	</div>
 </template>
@@ -21,17 +27,6 @@
 <script>
 	export default{
 		name: 'List',
-		props:{
-			gradeList:{
-			  type: Array,
-			  default(){
-			    return []
-			  }
-			}
-		},
-		updated(){
-			this.$emit('refresh')
-		},
 		methods:{
 			calGrade(grade){
 				if(grade < 60){
@@ -40,7 +35,15 @@
 					return 'rgb(130,188,163)'
 				}
 			},
-
+		},
+		computed:{
+			checkState(){
+				console.log(this.$store.state.gradeList)
+				if(this.$store.state.gradeList === 'error'){
+					return false
+				}
+				return true
+			}
 		},
 		data(){
 			return{
@@ -55,9 +58,10 @@
 <style scoped>
 	.wrap{
 		box-shadow: 0.25rem 0.25rem 0.25rem rgb(205, 205, 206);;
-		margin-bottom: 3vh;
-		margin-bottom: 1vh;
+		margin-bottom: 2vh;
+		margin-top: 1vh;
 		background-color: white;
+		opacity: 0.88;
 		border-radius: 0.375rem;
 	}
 	.top{

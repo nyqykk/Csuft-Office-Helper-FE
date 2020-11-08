@@ -1,45 +1,47 @@
 <template>
 	<div class="filter-wrap">
-		<mu-button round small class="mu-botton" color="error" @click="open = !open">
-				  <mu-icon value="menu"></mu-icon>
-				</mu-button>
-		<mu-drawer :open.sync="open" :docked="false" :right='false'>
-				<mu-list>
-				  <mu-list-item button>
-					<mu-list-item-title>Menu Item 1</mu-list-item-title>
-				  </mu-list-item>
-				  <mu-list-item button>
-					<mu-list-item-title>Menu Item 2</mu-list-item-title>
-				  </mu-list-item>
-				  <mu-list-item  @click="open = false" button>
-					<mu-list-item-title>Close</mu-list-item-title>
-				  </mu-list-item>
-				</mu-list>
-		</mu-drawer>
+		<mu-auto-complete color="black" v-model="inputMsg"  icon="search" placeholder="课程名关键字"></mu-auto-complete>
 	</div>
 </template>
 
 <script>
-	export default {
-	  data () {
-	    return {
-	      docked: false,
-	      open: false,
-	      position: 'left'
-	    }
-	  }
+	export default{
+		data(){
+			return {
+				inputMsg: ''
+			}
+		}
 	}
 </script>
 
 <style scoped>
-	.mu-appbar-title{
-		padding: 0;
+	.mu-input{
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
+		border: 1px black solid;
+		border-radius: 1.0625rem;
+		background-color: white;
+		width: 96vw;
+		margin-left: 2vw;
+		margin-right: 2vw;
+		padding-right: 10vw;
+		min-height: 0;
 	}
-	.mu-botton{
-		height: 4vh;
+	.mu-input-content{
 	}
 	.filter-wrap{
-		height: 8vh;
-		line-height: 8vh;
+		/* background-color: white; */
+		padding-bottom: 1vh;
+		padding-top: 1vh;
+		opacity: 0.8;
+	}
+	.mu-input{
+		display: flex;
+		align-items: center;
+	}
+	.filter-wrap >>> .mu-input-icon{
+		top: 50%;
+		transform: translateY(-50%);
 	}
 </style>
