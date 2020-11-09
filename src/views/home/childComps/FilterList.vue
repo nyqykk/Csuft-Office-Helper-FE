@@ -1,6 +1,6 @@
 <template>
 	<div class="filter-wrap">
-		<mu-auto-complete color="black" v-model="inputMsg"  icon="search" placeholder="课程名关键字"></mu-auto-complete>
+		<mu-auto-complete color="skyblue" v-model="inputMsg"  icon="search" placeholder="课程名关键字"></mu-auto-complete>
 	</div>
 </template>
 
@@ -10,14 +10,20 @@
 			return {
 				inputMsg: ''
 			}
+		},
+		watch:{
+			inputMsg:{
+				handler(newMsg, oldMsg){
+					this.$bus.$emit('useFilter', newMsg)
+				}
+			}
 		}
 	}
 </script>
 
 <style scoped>
 	.mu-input{
-		padding-top: 0;
-		padding-bottom: 0;
+		padding-bottom: 1vh;
 		margin: 0;
 		border: 1px black solid;
 		border-radius: 1.0625rem;
@@ -27,14 +33,13 @@
 		margin-right: 2vw;
 		padding-right: 10vw;
 		min-height: 0;
-	}
-	.mu-input-content{
+		height: 4.5vh;
 	}
 	.filter-wrap{
-		/* background-color: white; */
 		padding-bottom: 1vh;
 		padding-top: 1vh;
 		opacity: 0.8;
+		color: white;
 	}
 	.mu-input{
 		display: flex;

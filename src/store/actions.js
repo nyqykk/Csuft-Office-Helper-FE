@@ -1,6 +1,6 @@
 import axios from 'axios'
 export function asyncGradeList(store, gradeList){
-	axios.post('http://118.249.51.137:5000/test',{
+	axios.post('http://localhost:5000/test',{
 				  username: gradeList.username,
 				  pwd0: gradeList.pwd0
 				},

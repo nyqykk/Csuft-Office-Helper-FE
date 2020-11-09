@@ -23,16 +23,6 @@ export default {
 		  position: 0,
 		  activeKey: 0
 	  }
-  },
-  mounted() {
-		console.log('aaa')
-  	
-  },
-  methods:{
-/* 	  btnClick(){
-		  console.log('aaa')
-		  
-	  }, */
   }
 }
 </script>

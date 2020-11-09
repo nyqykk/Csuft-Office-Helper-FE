@@ -1,4 +1,4 @@
-module.exports = {
+/* module.exports = {
   // 基本路径
 
   // 输出文件目录
@@ -37,7 +37,7 @@ module.exports = {
   // webpack-dev-server 相关配置
   devServer: {
     open: process.platform === "darwin",
-    host: "118.249.51.137",
+    host: "118.249.48.72",
     port: 8080,
     https: false,
     hotOnly: false,
@@ -56,4 +56,4 @@ module.exports = {
   pluginOptions: {
     // ...
   }
-};
+}; */
