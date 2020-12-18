@@ -44,18 +44,18 @@
 </script>
 
 <style scoped>
-  .tab-bar-item{
-    flex: 1;
-    height: 49px;
-    font-size: 14px;
-  }
-  .tab-bar-item img{
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    margin-top: 2px;
-  }
-  .active{
-    color: orangered;
-  }
+.tab-bar-item{
+  flex: 1;
+  height: 49px;
+  font-size: 14px;
+}
+.tab-bar-item img{
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-top: 2px;
+}
+.active{
+  color: orangered;
+}
 </style>

@@ -7,31 +7,31 @@
 </template>
 
 <script>
-  import Bscroll from 'better-scroll'
+import Bscroll from 'better-scroll'
 
-  export default{
-    name: 'Scroll',
-    mounted(){
-      this.scroll = new Bscroll(this.$refs.wrapper,{
-        click: true,
-		preventDefault: true
-      })
-	},
-    data(){
-      return{
-        scroll: null,
-      }
-    },
-    methods:{
-      /* 回到顶部*/
-      scrollTo(x, y, time=300){
-        this.scroll.scrollTo(x, y, time)
-      },
-      refresh(){
-        /* console.log('-----') */
-        this.scroll && this.scroll.refresh && this.scroll.refresh()
-      }
+export default{
+  name: 'Scroll',
+  mounted(){
+    this.scroll = new Bscroll(this.$refs.wrapper,{
+      click: true,
+      preventDefault: true
+    })
+  },
+  data(){
+    return{
+      scroll: null,
     }
+  },
+  methods:{
+    /* 回到顶部*/
+    scrollTo(x, y, time=300){
+      this.scroll.scrollTo(x, y, time)
+    },
+    refresh(){
+      /* console.log('-----') */
+      this.scroll && this.scroll.refresh && this.scroll.refresh()
+    }
+  }
 }
 </script>
 

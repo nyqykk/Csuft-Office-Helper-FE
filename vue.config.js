@@ -1,59 +1,53 @@
-/* module.exports = {
-  // 基本路径
-
-  // 输出文件目录
-  outputDir: "service/dist",
-  // eslint-loader 是否在保存的时候检查
-  lintOnSave: true,
-  // webpack配置
-  // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-  chainWebpack: () => {},
-  configureWebpack: () => {},
-  // vue-loader 配置项
-  // https://vue-loader.vuejs.org/en/options.html
-  // vueLoader: {},
-  // 生产环境是否生成 sourceMap 文件
-  productionSourceMap: true,
-  // css相关配置
-  css: {
-    // 是否使用css分离插件 ExtractTextPlugin
-    extract: true,
-    // 开启 CSS source maps?
-    sourceMap: false,
-    // css预设器配置项
-    loaderOptions: {},
-    // 启用 CSS modules for all css / pre-processor files.
-    modules: false
-  },
-  // use thread-loader for babel & TS in production build
-  // enabled by default if the machine has more than 1 cores
-  parallel: require("os").cpus().length > 1,
-  // 是否启用dll
-  // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#dll-mode
-  // dll: false,
-  // PWA 插件相关配置
-  // see vuejs/vue-cli
-  pwa: {},
-  // webpack-dev-server 相关配置
-  devServer: {
-    open: process.platform === "darwin",
-    host: "118.249.48.72",
-    port: 8080,
-    https: false,
-    hotOnly: false,
-    proxy: {
-      "/gxyundata": {
-        target: "http://localhost:3000/",
-        changeOrigin: true,
-        pathRewrite: {
-          "^/gxyundata": "/gxyundata"
-        }
-      }
-    } // 设置代理
-    // before: app => {}
-  },
-  // 第三方插件配置
-  pluginOptions: {
-    // ...
-  }
-}; */
+// module.exports = {
+//   // baseUrl从 Vue CLI 3.3 起已弃用，请使用publicPath
+//   // 默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如 https://www.my-app.com/。
+//   // 如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https://www.my-app.com/my-app/，则设置 publicPath 为 /my-app/。
+//   publicPath:
+//     process.env.NODE_ENV === "production" ? "/production-sub-path/" : "/",
+//   // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。
+//   // 注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。
+//   // 默认值'dist'
+//   outputDir: "my-app",
+//   // 放置生成的静态资源 (js、css、img、fonts) 的目录(相对于outputDir目录)。
+//   // 默认值''
+//   assetsDir: "assets",
+//   //指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。
+//   // 默认值'index.html'
+//   indexPath: "myIndex.html",
+//   // 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。
+//   filenameHashing: false,
+//   // 是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码。这个值会在 @vue/cli-plugin-eslint 被安装之后生效。
+//   lintOnSave: process.env.NODE_ENV !== "production",
+//
+//   //是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。
+//   runtimeCompiler: false,
+//
+//   // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
+//   productionSourceMap: false,
+//
+//   // 所有 webpack-dev-server 的选项都支持。
+//   devServer: {
+//     host: "172.31.230.64",
+//     port: 8080, // 端口号
+//     https: false,
+//     open: true, //配置自动启动浏览器
+//
+//     // 配置多个代理
+//     proxy: {
+//       "/api": {
+//         target: "http://localhost:3000", // 本地模拟数据服务器
+//         changeOrigin: true,
+//         pathRewrite: {
+//           "^/api": "" // 去掉接口地址中的api字符串
+//         }
+//       },
+//       "/foo": {
+//         target: "http://localhost:8080", // 本地模拟数据服务器
+//         changeOrigin: true,
+//         pathRewrite: {
+//           "^/foo": "" // 去掉接口地址中的foo字符串
+//         }
+//       }
+//     }
+//   }
+// };
