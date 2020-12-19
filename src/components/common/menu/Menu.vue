@@ -42,7 +42,7 @@ export default {
   methods:{
     ...mapMutations(['getBackgroundImg']),
     backClick(){
-      this.$router.push('/about')
+      this.$router.push('/login')
     },
     changeDialogVisible(){
 	  this.dialogVisible = true;

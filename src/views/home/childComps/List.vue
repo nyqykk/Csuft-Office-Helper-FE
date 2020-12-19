@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-show="gradeList" class="avg-grade">
-	  平均分: {{averGrade}}
+	  平均分: {{averGrade.toFixed(2)}}
 	</div>
 
 	<div class="item-container">
@@ -34,8 +34,7 @@ export default{
     this.$bus.$on('useFilter', (filterConfig) => {
 	  this.filterGradeList = this.filterGrade(filterConfig)
 	})
-    this.cardTransitionLeft = true
-    this.cardTransitionRight = true
+    this.cardTransitionLeft = this.cardTransitionRight = true
   },
 
   destroyed() {
@@ -44,11 +43,7 @@ export default{
 
   methods:{
     calGrade(grade){
-	  if(grade < 60){
-		return 'rgb(255, 85, 0)'
-	  }else{
-		return 'rgb(130,188,163)'
-	  }
+      return grade < 60 ? 'rgb(255, 85, 0)' : 'rgb(130,188,163)'
 	},
 
 	isNumber(obj) {
@@ -64,7 +59,7 @@ export default{
 
     wrapTransition(index){
       let className = {wrap: true}
-      if(index % 2){
+      if(index & 1){
         className['card-transition-left-before'] = true
         className['card-transition-left'] = this.cardTransitionLeft
       }else{
@@ -119,25 +114,26 @@ export default{
 }
 .wrap{
   position: relative;
-  box-shadow: 0.25rem 0.25rem 0.25rem rgb(205, 205, 206);;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgb(205, 205, 206);
   margin-bottom: 2vh;
   margin-top: 1vh;
   background-color: white;
   opacity: 0.88;
   border-radius: 0.375rem;
-  transition: all 1s;
+  transition-duration: .9s;
+  transition-property: transform;
 }
 .card-transition-left-before{
-    left: -100vw;
+  transform: translateX(-100vw);
 }
 .card-transition-left{
-  left: 0;
+  transform: translateX(0);
 }
 .card-transition-right-before{
-  right: -100vw;
+  transform: translateX(100vw);
 }
 .card-transition-right{
-  right: 0;
+  transform: translateX(0);
 }
 .top{
   list-style: none;

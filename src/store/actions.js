@@ -1,6 +1,6 @@
 import axios from 'axios'
 export async function asyncGradeList(store, userInfo){
-  let res = await axios.post('http://localhost:5000',{
+  let res = await axios.post('http://192.168.0.2:5000',{
 		username: userInfo.username,
 		pwd: userInfo.pwd
 	})

@@ -9,16 +9,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
+  created() {
+    if(!this.gradeList){
+      this.$router.push('/login')
+    }
+  },
   components: {
     List: () => import('./childComps/List'),
     FilterList: () => import('./childComps/FilterList'),
     Menu: () => import('../.././components/common/menu/Menu')
   },
-  data(){
-    return{
-    }
+  computed:{
+    ...mapState(['gradeList'])
   }
 }
 </script>
@@ -26,8 +31,6 @@ export default {
 .home{
   position: relative;
   height: 94vh;
-  /*background-image: url(../../assets/img/bd443b8d8060e3f6e55144230bbf4435435dbd97.jpg@1320w_1866h.webp.jpg);*/
-  /*background-size: 100vw 100vh;*/
   overflow: auto;
   overflow-x: hidden;
   overflow-y: scroll;

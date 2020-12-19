@@ -33,7 +33,8 @@ export default{
   margin-right: 2vw;
   padding-right: 10vw;
   min-height: 0;
-  height: 4.5vh;
+  height: 5.2vh;
+  font-size: 1rem;
 }
 .filter-wrap{
   padding-bottom: 1vh;
