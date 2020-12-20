@@ -1,19 +1,3 @@
-# check-grade
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Csuft-Office-Helper-FE
+中南林业科技大学教务处小助手
+联系作者:小牧 qq:1327719263
