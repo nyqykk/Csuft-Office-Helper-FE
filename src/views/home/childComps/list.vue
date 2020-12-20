@@ -7,7 +7,7 @@
 	<div class="item-container">
 	  <div :class="wrapTransition(index)" v-for="(item, index) in (filterGradeList || gradeList)">
 		<ul class="top">
-		  <li class="img-div"><img src="../../../assets/img/b.png" /></li>
+		  <li class="img-div"><img src="../../../assets/img/detailLogo.png" /></li>
 		  <li class="class-num">课程号:{{item.classNum}}<li/>
 		  <li class="top-right">学年学期:{{item.time}}</li>
 		</ul>
@@ -84,8 +84,7 @@ export default{
 	      }
 	      num++
 	      return pre + Number(cur.grade)
-	    }
-	    }, 0)
+	    }}, 0)
 	    return total/num
       }
     },

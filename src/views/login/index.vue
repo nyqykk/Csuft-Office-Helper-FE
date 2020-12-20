@@ -1,17 +1,19 @@
 <template>
   <div class="about">
 	<mu-avatar size="130">
-	  <img src="../../assets/img/loginLogo.jpg" />
+	  <img src="@/assets/img/loginLogo.jpg" />
 	</mu-avatar>
     <div class="input-wrap">
   	  <div class="input-div">
 	    <mu-auto-complete color="black" v-model="username" icon="person" placeholder="学号"></mu-auto-complete>
 		<mu-auto-complete type="password" color="black" v-model="pwd" icon="lock" placeholder="密码"></mu-auto-complete>
 	  </div>
-	  <mu-button ref="loginClick" :class="login" round color="red" @click="loginClick">
-	    <span v-if="!isClick">登录</span>
-	    <mu-circular-progress v-else-if="isClick==1" color="white" :stroke-width="2" :size="20"></mu-circular-progress>
-	  </mu-button>
+      <mu-button ref="loginRef" :class="login" round color="red" @click="loginClick">
+        <span v-if="!isClick">登录</span>
+        <mu-circular-progress v-else-if="isClick==1" color="white" :stroke-width="2" :size="20"></mu-circular-progress>
+      </mu-button>
+      <!--Hacker 提升动画帧数-->
+      <mu-button v-show="showHacker" ref="hackRef" :class="loginHack" round color="red"></mu-button>
 	</div>
   </div>
 </template>
@@ -24,15 +26,24 @@ export default{
 	  username: '',
 	  pwd: '',
 	  isClick: 0,
-      loginSuccess: false
+      loginSuccess: false,
+      transitionFlag: true,
+      showHacker: false
 	}
   },
   computed:{
     ...mapState(['msg']),
     login(){
       return {
-        ['is-click']: this.isClick,
-        ['login-success']: this.loginSuccess
+        ['is-click']: !!this.isClick,
+        ['login-btn']: true
+      }
+    },
+    loginHack(){
+      return {
+        ['is-click']: true,
+        ['login-hack']: true,
+        ['login-success']: this.loginSuccess,
       }
     }
   },
@@ -48,9 +59,14 @@ export default{
           pwd: this.pwd,
         })
         if(!this.msg){
-          this.$refs.loginClick.$el.addEventListener('transitionend', this.moveTo)
-          this.isClick = 2
-          this.loginSuccess = true
+          this.showHacker = true
+          new Promise((resolve) => {
+            this.$refs.hackRef.$el.addEventListener('transitionend', this.moveTo(event))
+            resolve()
+          }).then(() => {
+            this.isClick = 2
+            this.loginSuccess = true
+          })
         }else{
           this.isClick = 0;
           this.$toast.error('账号错误或登录太频繁')
@@ -59,12 +75,17 @@ export default{
         console.log(e)
       }
 	},
-    moveTo(){
-      this.$router.push('/home')
+    moveTo(e){
+      return (e) => {
+        if(e.target === e.currentTarget && this.transitionFlag) {
+          this.$router.push('/home')
+          this.transitionFlag = false;
+        }
+      }
     }
   },
   beforeDestroy() {
-    this.$refs.loginClick.$el.removeEventListener('transitionend', this.moveTo)
+    this.$refs.hackRef.$el.removeEventListener('transitionend', this.moveTo(event))
   }
 }
 </script>
@@ -89,7 +110,7 @@ export default{
   position: relative;
   top: 65%;
 }
-.mu-button{
+.login-btn{
   position: absolute;
   margin-top: 3vh;
   left: 50%;
@@ -97,7 +118,18 @@ export default{
   width: 85%;
   min-width: 0;
   height: 5vh;
-  transition-property: width, transform, border-radius;
+  transition-property: width;
+  transition-duration: .9s;
+}
+.login-hack{
+  position: absolute;
+  margin-top: 3vh;
+  left: 45%;
+  width: 85%;
+  min-width: 0;
+  height: 5vh;
+  transform: translateZ(0);
+  transition-property: transform, border-radius;
   transition-duration: .9s;
 }
 .mu-input >>> .mu-input-icon{
@@ -124,10 +156,6 @@ export default{
   overflow: visible;
 }
 .login-success{
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
   transform: translateZ(0) translate(-10vw, -40vh) scale(20,27);
   border-radius: 50%;
 }

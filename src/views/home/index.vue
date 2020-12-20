@@ -18,9 +18,9 @@ export default {
     }
   },
   components: {
-    List: () => import('./childComps/List'),
-    FilterList: () => import('./childComps/FilterList'),
-    Menu: () => import('../.././components/common/menu/Menu')
+    List: () => import('@/views/home/childComps/list'),
+    FilterList: () => import('@/views/home/childComps/filter-list'),
+    Menu: () => import('@/components/common/menu/menu')
   },
   computed:{
     ...mapState(['gradeList'])

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {getGradeList, resetGradeList, getBackgroundImg} from './mutations.js'
-import {asyncGradeList} from './actions.js'
-import backgroundImage from "../assets/img/bd443b8d8060e3f6e55144230bbf4435435dbd97.jpg@1320w_1866h.webp.jpg";
+import { getGradeList, resetGradeList, getBackgroundImg } from '@/store/mutations.js'
+import { asyncGradeList } from '@/store/actions.js'
+import backgroundImage from "@/assets/img/backgroundImg.jpg";
 
 Vue.use(Vuex)
 
@@ -20,6 +20,4 @@ export default new Vuex.Store({
   actions: {
 	  asyncGradeList
   },
-  modules: {
-  }
 })
