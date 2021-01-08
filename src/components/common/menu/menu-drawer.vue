@@ -99,7 +99,6 @@ export default {
 .mu-paper{
   background-image: url(~@/assets/img/drawerLogo.jpg);
   background-size: 100vw 100vh;
-  width: 55vw;
 }
 .mu-item-title{
   text-align: center;
