@@ -16,6 +16,7 @@
           <li class="class-num">课程号:{{ item.classNum }}<li/>
           <li class="top-right">学年学期:{{ item.time }}</li>
         </ul>
+
         <div class="center">
           <div>课程名:{{ item.className }}</div>
             <div class="center-div">
