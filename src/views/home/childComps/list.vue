@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-show="gradeList" class="avg-grade">
-	  平均分: {{ averGrade.toFixed(2) }}
+	  总平均分: {{ averGrade.toFixed(2) }}
 	</div>
 
 	<div class="item-container">

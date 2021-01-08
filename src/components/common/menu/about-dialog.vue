@@ -7,8 +7,8 @@
     >
       <span>作者:</span>
       <ul class="writer-list">
-        <li>小牧 (聂焱)</li>
-        <li>秋屿 (李一龙)</li>
+        <li>小牧 (聂焱) QQ:1327719263</li>
+        <li>秋屿 (李一龙) QQ:2475978801</li>
       </ul>
       <mu-button slot="actions" flat color="primary" @click="onClose">关闭</mu-button>
     </mu-dialog>
