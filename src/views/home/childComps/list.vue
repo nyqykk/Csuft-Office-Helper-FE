@@ -1,27 +1,34 @@
 <template>
   <div>
     <div v-show="gradeList" class="avg-grade">
-	  平均分: {{averGrade.toFixed(2)}}
+	  平均分: {{ averGrade.toFixed(2) }}
 	</div>
 
 	<div class="item-container">
-	  <div :class="wrapTransition(index)" v-for="(item, index) in (filterGradeList || gradeList)">
-		<ul class="top">
-		  <li class="img-div"><img src="../../../assets/img/detailLogo.png" /></li>
-		  <li class="class-num">课程号:{{item.classNum}}<li/>
-		  <li class="top-right">学年学期:{{item.time}}</li>
-		</ul>
-		<div class="center">
-		  <div>课程名:{{item.className}}</div>
-		  <div class="center-div">
-		    <div>成绩:{{item.grade}}</div>
-			  <div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{item.studyStatus}}</div>
-			</div>
-		  <div class="credit">学分:{{item.credit}}</div>
-		</div>
-	  </div>
-	</div>
-
+        <transition @before-enter="beforeEnter" @enter="enter">
+          <div class="transition-enter" v-if="!enterTransition" />
+        </transition>
+          <div
+            class="wrap"
+            v-for="(item, index) in (filterGradeList || gradeList)"
+            :key="item.classNum"
+            :data-index="index"
+          >
+            <ul class="top">
+                <li class="img-wrap"><img class="img-content" src="@/assets/img/detailLogo.png" /></li>
+                <li class="class-num">课程号:{{ item.classNum }}<li/>
+                <li class="top-right">学年学期:{{ item.time }}</li>
+            </ul>
+            <div class="center">
+                <div>课程名:{{ item.className }}</div>
+                <div class="center-div">
+                    <div>成绩:{{ item.grade }}</div>
+                    <div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{ item.studyStatus }}</div>
+                </div>
+                <div class="credit">学分:{{ item.credit }}</div>
+            </div>
+          </div>
+    </div>
   </div>
 </template>
 
@@ -29,12 +36,12 @@
 import { mapState } from 'vuex'
 export default{
   name: 'List',
-
   mounted() {
     this.$bus.$on('useFilter', (filterConfig) => {
+      console.log('test')
 	  this.filterGradeList = this.filterGrade(filterConfig)
 	})
-    this.cardTransitionLeft = this.cardTransitionRight = true
+    this.enterTransition = true
   },
 
   destroyed() {
@@ -51,22 +58,17 @@ export default{
 	},
 
 	filterGrade(gradeConfig){
-	  let result = this.$store.state.gradeList.filter((gradeItem) => {
+	  let result = this.gradeList.filter((gradeItem) => {
 	  	return ((gradeItem.className.indexOf(gradeConfig.toLowerCase()) !== -1) || (gradeItem.className.indexOf(gradeConfig.toUpperCase()) !== -1))
 	  })
 	  return result
 	},
-
-    wrapTransition(index){
-      let className = {wrap: true}
-      if(index & 1){
-        className['card-transition-left-before'] = true
-        className['card-transition-left'] = this.cardTransitionLeft
-      }else{
-        className['card-transition-right-before'] = true
-        className['card-transition-right'] = this.cardTransitionRight
-      }
-      return className
+    beforeEnter(el){
+      console.log(el.style)
+    },
+    enter(el, done){
+      console.log(el.style.width)
+      // el.style.transform = 'scale(0,0)'
     }
   },
   computed:{
@@ -96,8 +98,7 @@ export default{
 	    color: 'rgb(130,188,163)',
 	  },
 	  filterGradeList: null,
-      cardTransitionLeft: false,
-      cardTransitionRight: false,
+      enterTransition: false,
     }
   }
 }
@@ -119,20 +120,6 @@ export default{
   background-color: white;
   opacity: 0.88;
   border-radius: 0.375rem;
-  transition-duration: .9s;
-  transition-property: transform;
-}
-.card-transition-left-before{
-  transform: translateX(-100vw);
-}
-.card-transition-left{
-  transform: translateX(0);
-}
-.card-transition-right-before{
-  transform: translateX(100vw);
-}
-.card-transition-right{
-  transform: translateX(0);
 }
 .top{
   list-style: none;
@@ -149,12 +136,12 @@ export default{
 .class-num{
   font-size: 0.88rem;
 }
-.img-div{
+.img-wrap{
   position: relative;
-  top: 1.1vh;
+  top: 0.3vh;
   left: 1vw;
 }
-img{
+.img-content{
   width: 1.625rem;
   height: 1.875rem;
   transform:rotate(-45deg);
@@ -186,5 +173,16 @@ img{
 }
 .credit{
   padding-bottom: 1vh;
+}
+.transition-enter{
+  width: 100vh;
+  height: 120vh;
+  border-radius: 100vh;
+  background-color: red;
+  position: absolute;
+  z-index: 1;
+  top: -10vh;
+  left: -38vw;
+  transition: all .9s;
 }
 </style>

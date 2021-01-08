@@ -79,7 +79,7 @@ export default{
       return (e) => {
         if(e.target === e.currentTarget && this.transitionFlag) {
           this.$router.push('/home')
-          this.transitionFlag = false;
+          this.transitionFlag = false
         }
       }
     }
