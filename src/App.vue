@@ -10,8 +10,9 @@ export default{
   name: "app",
   mounted() {
     let backgroundImage = localStorage.getItem('backgroundImage')
-    if(backgroundImage)
+    if(backgroundImage){
       this.$store.commit('getBackgroundImg', backgroundImage)
+    }
   },
   computed:{
     ...mapState(['backgroundImage'])

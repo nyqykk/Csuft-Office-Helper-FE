@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="login-wrap">
 	<mu-avatar size="130">
 	  <img src="@/assets/img/loginLogo.jpg" />
 	</mu-avatar>
@@ -8,12 +8,12 @@
 	    <mu-auto-complete color="black" v-model="username" icon="person" placeholder="学号"></mu-auto-complete>
 		<mu-auto-complete type="password" color="black" v-model="pwd" icon="lock" placeholder="密码"></mu-auto-complete>
 	  </div>
-      <mu-button ref="loginRef" :class="login" round color="red" @click="loginClick">
+      <mu-button ref="loginRef" :class="loginClass" round color="red" @click="loginClick">
         <span v-if="!isClick">登录</span>
         <mu-circular-progress v-else-if="isClick==1" color="white" :stroke-width="2" :size="20"></mu-circular-progress>
       </mu-button>
       <!--Hacker 提升动画帧数-->
-      <mu-button v-show="showHacker" ref="hackRef" :class="loginHack" round color="red"></mu-button>
+      <mu-button v-show="showHacker" ref="hackRef" :class="loginHackClass" round color="red"></mu-button>
 	</div>
   </div>
 </template>
@@ -33,13 +33,13 @@ export default{
   },
   computed:{
     ...mapState(['msg']),
-    login(){
+    loginClass(){
       return {
         ['is-click']: !!this.isClick,
         ['login-btn']: true
       }
     },
-    loginHack(){
+    loginHackClass(){
       return {
         ['is-click']: true,
         ['login-hack']: true,
@@ -91,7 +91,7 @@ export default{
 </script>
 
 <style scoped>
-.about{
+.login-wrap{
   height: 100vh;
   background-size: 100vw 100vh;
   overflow: hidden;
@@ -147,7 +147,7 @@ export default{
   font-size: 1.3125rem;
 }
 .is-click{
-  width: 10%;
+  width: 11%;
 }
 .mu-button >>> .mu-circular-progress{
   display: flex;

@@ -10,17 +10,22 @@
 
     <mu-drawer :open.sync="open" :docked="false" :right='false'>
       <mu-list>
-        <mu-list-item :style="getItemStyle(85, 1, 'test3.jpg')" button @click="changeDialogVisible">
-          <mu-list-item-title>关于我们</mu-list-item-title>
-        </mu-list-item>
-
-        <mu-list-item :style="getItemStyle(95, 1, 'test3.jpg')" button @click="editBackGround">
+        <mu-list-item button @click="editBackGround">
+          <mu-list-item-action>
+            <mu-icon value="crop_original"></mu-icon>
+          </mu-list-item-action>
           <mu-list-item-title>
             <span>自定义背景</span>
             <input @change="getFile" class="upload" type="file" ref="upload" />
           </mu-list-item-title>
         </mu-list-item>
-        <div>test</div>
+
+        <mu-list-item button @click="changeDialogVisible">
+          <mu-list-item-action>
+            <mu-icon value="alternate_email"></mu-icon>
+          </mu-list-item-action>
+          <mu-list-item-title>关于我们</mu-list-item-title>
+        </mu-list-item>
       </mu-list>
     </mu-drawer>
   </mu-appbar>
@@ -61,16 +66,6 @@ export default {
         this.open = false
       })
     },
-    getItemStyle(width, marginTop, imgName){
-      let styleSheet = {
-        ['margin-top']: `${marginTop}rem`,
-        ['background-image']: `url(${require('@/assets/img/' + imgName)})`,
-        ['border-radius']   : '0 10rem 10rem 0',
-        ['background-size']: '100%',
-        width: `${width}%`
-      }
-      return styleSheet
-    }
   },
 }
 </script>
@@ -102,17 +97,19 @@ export default {
   color: black;
 }
 .mu-paper{
-  background-image: url(~@/assets/img/test.jpg);
+  background-image: url(~@/assets/img/drawerLogo.jpg);
+  background-size: 100vw 100vh;
   width: 55vw;
 }
 .mu-item-title{
   text-align: center;
+  margin-left: -12vw;
 }
 .mu-list >>> .mu-item{
   color: white;
   height: 6.5vh;
 }
-.mu-list >>> .mu-ripple-wrapper{
-  border-radius: 0 10rem 10rem 0;
+.mu-list li{
+  margin-top: 1vh;
 }
 </style>

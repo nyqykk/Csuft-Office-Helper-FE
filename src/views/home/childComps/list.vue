@@ -5,29 +5,26 @@
 	</div>
 
 	<div class="item-container">
-        <transition @before-enter="beforeEnter" @enter="enter">
-          <div class="transition-enter" v-if="!enterTransition" />
-        </transition>
-          <div
-            class="wrap"
-            v-for="(item, index) in (filterGradeList || gradeList)"
-            :key="item.classNum"
-            :data-index="index"
-          >
-            <ul class="top">
-                <li class="img-wrap"><img class="img-content" src="@/assets/img/detailLogo.png" /></li>
-                <li class="class-num">课程号:{{ item.classNum }}<li/>
-                <li class="top-right">学年学期:{{ item.time }}</li>
-            </ul>
-            <div class="center">
-                <div>课程名:{{ item.className }}</div>
-                <div class="center-div">
-                    <div>成绩:{{ item.grade }}</div>
-                    <div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{ item.studyStatus }}</div>
-                </div>
-                <div class="credit">学分:{{ item.credit }}</div>
+      <div
+        class="wrap"
+        v-for="(item, index) in (filterGradeList || gradeList)"
+        :key="item.classNum"
+        :data-index="index"
+      >
+        <ul class="top">
+          <li class="img-wrap"><img class="img-content" src="@/assets/img/detailLogo.png" /></li>
+          <li class="class-num">课程号:{{ item.classNum }}<li/>
+          <li class="top-right">学年学期:{{ item.time }}</li>
+        </ul>
+        <div class="center">
+          <div>课程名:{{ item.className }}</div>
+            <div class="center-div">
+              <div>成绩:{{ item.grade }}</div>
+              <div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{ item.studyStatus }}</div>
             </div>
-          </div>
+          <div class="credit">学分:{{ item.credit }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,10 +35,8 @@ export default{
   name: 'List',
   mounted() {
     this.$bus.$on('useFilter', (filterConfig) => {
-      console.log('test')
 	  this.filterGradeList = this.filterGrade(filterConfig)
 	})
-    this.enterTransition = true
   },
 
   destroyed() {
@@ -59,17 +54,10 @@ export default{
 
 	filterGrade(gradeConfig){
 	  let result = this.gradeList.filter((gradeItem) => {
-	  	return ((gradeItem.className.indexOf(gradeConfig.toLowerCase()) !== -1) || (gradeItem.className.indexOf(gradeConfig.toUpperCase()) !== -1))
+	  	return ((gradeItem.className.toLowerCase().indexOf(gradeConfig.toLowerCase()) !== -1) || (gradeItem.className.toLowerCase().indexOf(gradeConfig.toUpperCase()) !== -1))
 	  })
 	  return result
 	},
-    beforeEnter(el){
-      console.log(el.style)
-    },
-    enter(el, done){
-      console.log(el.style.width)
-      // el.style.transform = 'scale(0,0)'
-    }
   },
   computed:{
     ...mapState(['gradeList']),
@@ -98,7 +86,6 @@ export default{
 	    color: 'rgb(130,188,163)',
 	  },
 	  filterGradeList: null,
-      enterTransition: false,
     }
   }
 }
@@ -173,16 +160,5 @@ export default{
 }
 .credit{
   padding-bottom: 1vh;
-}
-.transition-enter{
-  width: 100vh;
-  height: 120vh;
-  border-radius: 100vh;
-  background-color: red;
-  position: absolute;
-  z-index: 1;
-  top: -10vh;
-  left: -38vw;
-  transition: all .9s;
 }
 </style>
