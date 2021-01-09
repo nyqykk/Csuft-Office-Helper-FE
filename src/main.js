@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 Vue.use(MuseUI);
 Vue.use(Toast, {
   position: 'top',
-  time: 2000,
+  time: 2500,
 });
 
 new Vue({
