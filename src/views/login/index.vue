@@ -15,6 +15,11 @@
       <!--Hacker 提升动画帧数-->
       <mu-button v-show="showHacker" ref="hackRef" :class="loginHackClass" round color="red"></mu-button>
 	</div>
+    <div class="alert-icon">
+      <mu-button @click="onAlert" icon>
+        <mu-icon class="icon" value="send"></mu-icon>
+      </mu-button>
+    </div>
   </div>
 </template>
 
@@ -28,51 +33,57 @@ export default{
 	  isClick: 0,
       loginSuccess: false,
       transitionFlag: true,
-      showHacker: false
+      showHacker: false,
+      tips: '如有任何问题可联系QQ1327719263',
 	}
   },
   computed:{
     ...mapState(['msg']),
     loginClass(){
-      return {
+      let classNames = {
         ['is-click']: !!this.isClick,
         ['login-btn']: true
       }
+      return classNames;
     },
     loginHackClass(){
-      return {
+      let classNames = {
         ['is-click']: true,
         ['login-hack']: true,
-        ['login-success']: this.loginSuccess,
+        ['login-success']: this.loginSuccess
       }
+      return classNames;
     }
   },
   methods:{
     ...mapMutations(['resetGradeList']),
     ...mapActions(['asyncGradeList']),
 	async loginClick(){
-	  this.isClick = 1;
-      this.resetGradeList()
-      try{
-        await this.asyncGradeList({
-          username : this.username,
-          pwd: this.pwd,
-        })
-        if(!this.msg){
-          this.showHacker = true;
-          new Promise((resolve) => {
+      if(this.isClick !== 1){
+        this.isClick = 1;
+        this.resetGradeList();
+        try{
+          await this.asyncGradeList({
+            username : this.username,
+            pwd: this.pwd,
+          })
+          if(!this.msg){
+            this.showHacker = true;
+            new Promise((resolve) => {
             this.$refs.hackRef.$el.addEventListener('transitionend', this.moveTo(event));
             resolve();
-          }).then(() => {
-            this.isClick = 2;
-            this.loginSuccess = true;
-          })
-        }else{
-          this.isClick = 0;
-          this.$toast.error('账号错误或登录太频繁');
-        }
-      }catch (e) {
-        console.log(e);
+            }).then(() => {
+              this.isClick = 2;
+              this.loginSuccess = true;
+            })
+            }else{
+              this.isClick = 0;
+              this.$toast.error('账号错误或登录太频繁');
+            }
+          }catch(e){
+            this.$toast.error('网路有波动成绩溜走了');
+            this.isClick = 0;
+          }
       }
 	},
     moveTo(e){
@@ -82,6 +93,9 @@ export default{
           this.transitionFlag = false;
         }
       }
+    },
+    onAlert(){
+      this.$toast.warning(this.tips)
     }
   },
   beforeDestroy() {
@@ -158,5 +172,13 @@ export default{
 .login-success{
   transform: translateZ(0) translate(-10vw, -40vh) scale(20,27);
   border-radius: 50%;
+}
+.alert-icon{
+  position: relative;
+  top: 13%;
+  left: 44%;
+}
+.icon{
+  color: white;
 }
 </style>
