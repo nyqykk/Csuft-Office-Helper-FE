@@ -8,16 +8,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-	  gradeList: null,
+    gradeList: null,
     backgroundImage,
+    originBackGround: backgroundImage,
     msg: ''
   },
   mutations: {
-	  getGradeList,
-	  resetGradeList,
+    getGradeList,
+    resetGradeList,
     getBackgroundImg
   },
   actions: {
-	  asyncGradeList
+    asyncGradeList
   },
 })

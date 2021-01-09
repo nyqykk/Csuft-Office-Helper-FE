@@ -20,6 +20,15 @@
           </mu-list-item-title>
         </mu-list-item>
 
+        <mu-list-item button @click="resetBackGround">
+          <mu-list-item-action>
+            <mu-icon value="update"></mu-icon>
+          </mu-list-item-action>
+          <mu-list-item-title>
+            <span>重置背景</span>
+          </mu-list-item-title>
+        </mu-list-item>
+
         <mu-list-item button @click="changeDialogVisible">
           <mu-list-item-action>
             <mu-icon value="alternate_email"></mu-icon>
@@ -32,7 +41,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: "menu-drawer",
   data() {
@@ -41,6 +50,9 @@ export default {
       open: false,
       dialogVisible: false,
     }
+  },
+  computed: {
+    ...mapState(['originBackGround'])
   },
   methods: {
     ...mapMutations(['getBackgroundImg']),
@@ -57,8 +69,8 @@ export default {
       this.$refs.upload.click();
     },
     getFile(){
-      const file = this.$refs.upload.files[0]
-      let reader = new FileReader()
+      const file = this.$refs.upload.files[0];
+      let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.addEventListener('load', () => {
         localStorage.setItem('backgroundImage', reader.result);
@@ -66,6 +78,14 @@ export default {
         this.open = false;
       })
     },
+    async resetBackGround(){
+      let { result } = await this.$confirm('确定要重置吗?', '提示');
+      if(result){
+        localStorage.removeItem('backgroundImage');
+        this.getBackgroundImg(this.originBackGround);
+        this.open = false;
+      }
+    }
   },
 }
 </script>

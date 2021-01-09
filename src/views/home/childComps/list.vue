@@ -7,8 +7,8 @@
 	<div class="item-container">
       <div
         class="wrap"
-        v-for="(item, index) in (filterGradeList || gradeList)"
-        :key="item.classNum"
+        v-for="item in (filterGradeList || gradeList)"
+        :key="item.key"
       >
         <ul class="top">
           <li class="img-wrap"><img class="img-content" src="@/assets/img/detailLogo.png" /></li>
@@ -20,7 +20,7 @@
           <div>课程名:{{ item.className }}</div>
             <div class="center-div">
               <div>成绩:{{ item.grade }}</div>
-              <div class="study-status" :style="[isPass, {'color': calGrade(item.grade)}]">{{ item.studyStatus }}</div>
+              <div class="study-status" :style="{color: calGrade(item.grade)}">{{ item.studyStatus }}</div>
             </div>
           <div class="credit">学分:{{ item.credit }}</div>
         </div>
@@ -82,9 +82,6 @@ export default{
 
   data(){
     return{
-	  isPass:{
-	    color: 'rgb(130,188,163)',
-	  },
 	  filterGradeList: null,
     }
   }

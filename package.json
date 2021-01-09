@@ -10,6 +10,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "muse-ui": "^3.0.2",
+    "muse-ui-message": "^0.2.1",
     "muse-ui-toast": "^0.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
