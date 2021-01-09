@@ -172,6 +172,7 @@ export default{
 .login-success{
   transform: translateZ(0) translate(-10vw, -40vh) scale(20,27);
   border-radius: 50%;
+  z-index: 2;
 }
 .alert-icon{
   position: relative;
