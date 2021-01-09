@@ -10,6 +10,7 @@
         <li>小牧 (聂焱)</li>
         <li>龙 (李一龙)</li>
       </ul>
+      <br/>
       <div v-text="announce"></div>
       <mu-button slot="actions" flat color="primary" @click="onClose">关闭</mu-button>
     </mu-dialog>
@@ -27,7 +28,7 @@ export default {
   },
   data(){
     return{
-      announce: `声明:此项目并未收集同学们的教务处账号等个人隐私,有任何问题可联系 QQ:1327719263`,
+      announce: `声明:此项目并未收集同学们的教务处账号等个人隐私,只是为了方便大家,有任何问题可联系 QQ:1327719263`,
     }
   },
   methods:{
