@@ -19,10 +19,10 @@ export default {
   },
   methods:{
     onClose(){
-	  this.dialogVisible = false
+	  this.dialogVisible = false;
     },
     onDialogVisible(){
-      this.dialogVisible = true
+      this.dialogVisible = true;
     }
   },
   components:{

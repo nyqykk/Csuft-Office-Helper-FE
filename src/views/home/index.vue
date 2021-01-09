@@ -15,7 +15,7 @@ export default {
   name: 'Home',
   created() {
     if(!this.gradeList){
-      this.$router.push('/login')
+      this.$router.push('/login');
     }
     this.$nextTick(() => {
 	  this.homeTransitionEnd = true;

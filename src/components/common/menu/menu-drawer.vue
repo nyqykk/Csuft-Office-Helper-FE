@@ -45,25 +45,25 @@ export default {
   methods: {
     ...mapMutations(['getBackgroundImg']),
     onChangeVisible(){
-      this.open = true
+      this.open = true;
     },
     backClick(){
-      this.$router.push('/login')
+      this.$router.push('/login');
     },
     changeDialogVisible(){
-      this.$emit('onDialogVisible')
+      this.$emit('onDialogVisible');
     },
     editBackGround(){
-      this.$refs.upload.click()
+      this.$refs.upload.click();
     },
     getFile(){
       const file = this.$refs.upload.files[0]
       let reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
       reader.addEventListener('load', () => {
-        localStorage.setItem('backgroundImage', reader.result)
-        this.getBackgroundImg(reader.result)
-        this.open = false
+        localStorage.setItem('backgroundImage', reader.result);
+        this.getBackgroundImg(reader.result);
+        this.open = false;
       })
     },
   },

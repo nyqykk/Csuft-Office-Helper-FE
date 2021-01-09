@@ -14,7 +14,7 @@ export default{
   watch:{
     inputMsg:{
 	  handler(newMsg){
-	    this.$bus.$emit('useFilter', newMsg)
+	    this.$bus.$emit('useFilter', newMsg);
 	  }
 	}
   }

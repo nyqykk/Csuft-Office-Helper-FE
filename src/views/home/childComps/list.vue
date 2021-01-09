@@ -9,7 +9,6 @@
         class="wrap"
         v-for="(item, index) in (filterGradeList || gradeList)"
         :key="item.classNum"
-        :data-index="index"
       >
         <ul class="top">
           <li class="img-wrap"><img class="img-content" src="@/assets/img/detailLogo.png" /></li>
@@ -36,47 +35,47 @@ export default{
   name: 'List',
   mounted() {
     this.$bus.$on('useFilter', (filterConfig) => {
-	  this.filterGradeList = this.filterGrade(filterConfig)
+	  this.filterGradeList = this.filterGrade(filterConfig);
 	})
   },
 
   destroyed() {
-    this.$bus.$off('useFilter')
+    this.$bus.$off('useFilter');
   },
 
   methods:{
     calGrade(grade){
-      return grade < 60 ? 'rgb(255, 85, 0)' : 'rgb(130,188,163)'
+      return grade < 60 ? 'rgb(255, 85, 0)' : 'rgb(130,188,163)';
 	},
 
 	isNumber(obj) {
-	  return typeof obj === 'number' && !isNaN(obj)
+	  return typeof obj === 'number' && !isNaN(obj);
 	},
 
 	filterGrade(gradeConfig){
 	  let result = this.gradeList.filter((gradeItem) => {
-	  	return ((gradeItem.className.toLowerCase().indexOf(gradeConfig.toLowerCase()) !== -1) || (gradeItem.className.toLowerCase().indexOf(gradeConfig.toUpperCase()) !== -1))
+	  	return ((gradeItem.className.toLowerCase().indexOf(gradeConfig.toLowerCase()) !== -1) || (gradeItem.className.toLowerCase().indexOf(gradeConfig.toUpperCase()) !== -1));
 	  })
-	  return result
+	  return result;
 	},
   },
   computed:{
     ...mapState(['gradeList']),
     averGrade(){
       if(this.gradeList){
-	    let num = 0
+	    let num = 0;
 	    let total = this.gradeList.reduce((pre, cur) => {
 	    if(this.isNumber(Number(cur.grade)) || cur.grade === '及格'){
 	      if(cur.grade === ''){
-	        return pre
+	        return pre;
 	      }
 	      if(cur.grade === '及格'){
 	        cur.grade = 60
 	      }
-	      num++
-	      return pre + Number(cur.grade)
+	      num++;
+	      return pre + Number(cur.grade);
 	    }}, 0)
-	    return total/num
+	    return total/num;
       }
     },
   },
@@ -126,7 +125,7 @@ export default{
 }
 .img-wrap{
   position: relative;
-  top: 0.3vh;
+  top: 0.8vh;
   left: 1vw;
 }
 .img-content{

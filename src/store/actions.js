@@ -4,13 +4,13 @@ export async function asyncGradeList(store, userInfo){
 		username: userInfo.username,
 		pwd: userInfo.pwd
 	})
-	let data = {}
+	let data = {};
 	if(res.data.code === 400){
-		data.msg = res.data.msg
+		data.msg = res.data.msg;
 	}else{
-	  const gradeInfo = res.data.data.data
-		data.gradeList = gradeInfo.lastList
-		data.position = gradeInfo.position
+	  const gradeInfo = res.data.data.data;
+		data.gradeList = gradeInfo.lastList;
+		data.position = gradeInfo.position;
 	}
-	store.commit('getGradeList', data)
+	store.commit('getGradeList', data);
 }

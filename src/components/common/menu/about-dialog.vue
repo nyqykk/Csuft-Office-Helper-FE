@@ -7,9 +7,10 @@
     >
       <span>作者:</span>
       <ul class="writer-list">
-        <li>小牧 (聂焱) QQ:1327719263</li>
-        <li>秋屿 (李一龙) QQ:2475978801</li>
+        <li>小牧 (聂焱)</li>
+        <li>龙 (李一龙)</li>
       </ul>
+      <div v-text="announce"></div>
       <mu-button slot="actions" flat color="primary" @click="onClose">关闭</mu-button>
     </mu-dialog>
 </div>
@@ -18,14 +19,16 @@
 <script>
 export default {
   name: "about-dialog",
-  data(){
-    return{}
-  },
   props:{
     dialogVisible:{
       type: Boolean,
       default: false
     },
+  },
+  data(){
+    return{
+      announce: `声明:此项目并未收集同学们的教务处账号等个人隐私,有任何问题可联系 QQ:1327719263`,
+    }
   },
   methods:{
     onClose(){

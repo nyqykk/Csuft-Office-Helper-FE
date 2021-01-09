@@ -9,9 +9,9 @@ import { mapState } from 'vuex'
 export default{
   name: "app",
   mounted() {
-    let backgroundImage = localStorage.getItem('backgroundImage')
+    let backgroundImage = localStorage.getItem('backgroundImage');
     if(backgroundImage){
-      this.$store.commit('getBackgroundImg', backgroundImage)
+      this.$store.commit('getBackgroundImg', backgroundImage);
     }
   },
   computed:{

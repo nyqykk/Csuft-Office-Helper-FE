@@ -51,7 +51,7 @@ export default{
     ...mapMutations(['resetGradeList']),
     ...mapActions(['asyncGradeList']),
 	async loginClick(){
-	  this.isClick = 1
+	  this.isClick = 1;
       this.resetGradeList()
       try{
         await this.asyncGradeList({
@@ -59,33 +59,33 @@ export default{
           pwd: this.pwd,
         })
         if(!this.msg){
-          this.showHacker = true
+          this.showHacker = true;
           new Promise((resolve) => {
-            this.$refs.hackRef.$el.addEventListener('transitionend', this.moveTo(event))
-            resolve()
+            this.$refs.hackRef.$el.addEventListener('transitionend', this.moveTo(event));
+            resolve();
           }).then(() => {
-            this.isClick = 2
-            this.loginSuccess = true
+            this.isClick = 2;
+            this.loginSuccess = true;
           })
         }else{
           this.isClick = 0;
-          this.$toast.error('账号错误或登录太频繁')
+          this.$toast.error('账号错误或登录太频繁');
         }
       }catch (e) {
-        console.log(e)
+        console.log(e);
       }
 	},
     moveTo(e){
       return (e) => {
         if(e.target === e.currentTarget && this.transitionFlag) {
-          this.$router.push('/home')
-          this.transitionFlag = false
+          this.$router.push('/home');
+          this.transitionFlag = false;
         }
       }
     }
   },
   beforeDestroy() {
-    this.$refs.hackRef.$el.removeEventListener('transitionend', this.moveTo(event))
+    this.$refs.hackRef.$el.removeEventListener('transitionend', this.moveTo(event));
   }
 }
 </script>
