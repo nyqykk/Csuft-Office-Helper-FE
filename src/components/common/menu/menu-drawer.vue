@@ -1,18 +1,18 @@
 <template>
   <mu-appbar :z-depth="0">
     <mu-button icon slot="left" @click="backClick">
-      <mu-icon value="chevron_left"></mu-icon>
+      <mu-icon value=":iconfont icon-chevron-left"></mu-icon>
     </mu-button>
 
     <mu-button icon @click="onChangeVisible">
-      <mu-icon value="menu"></mu-icon>
+      <mu-icon class="icon" value=":iconfont icon-menu"></mu-icon>
     </mu-button>
 
     <mu-drawer :open.sync="open" :docked="false" :right='false'>
       <mu-list>
         <mu-list-item button @click="editBackGround">
           <mu-list-item-action>
-            <mu-icon value="crop_original"></mu-icon>
+            <mu-icon value=":iconfont icon-crop-original"></mu-icon>
           </mu-list-item-action>
           <mu-list-item-title>
             <span>自定义背景</span>
@@ -22,7 +22,7 @@
 
         <mu-list-item button @click="resetBackGround">
           <mu-list-item-action>
-            <mu-icon value="update"></mu-icon>
+            <mu-icon value=":iconfont icon-update"></mu-icon>
           </mu-list-item-action>
           <mu-list-item-title>
             <span>重置背景</span>
@@ -31,7 +31,7 @@
 
         <mu-list-item button @click="changeDialogVisible">
           <mu-list-item-action>
-            <mu-icon value="alternate_email"></mu-icon>
+            <mu-icon value=":iconfont icon-alternate_email-24px"></mu-icon>
           </mu-list-item-action>
           <mu-list-item-title>关于我们</mu-list-item-title>
         </mu-list-item>
@@ -130,5 +130,11 @@ export default {
 }
 .mu-list li{
   margin-top: 1vh;
+}
+.mu-icon{
+  font-size: 1.7rem;
+}
+.icon{
+  font-size: 1.5rem;
 }
 </style>

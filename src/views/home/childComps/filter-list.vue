@@ -1,6 +1,6 @@
 <template>
   <div class="filter-wrap">
-    <mu-auto-complete color="black" v-model="inputMsg"  icon="search" placeholder="课程名关键字"></mu-auto-complete>
+    <mu-auto-complete color="black" v-model="inputMsg"  icon=":iconfont icon-search" placeholder="课程名关键字"></mu-auto-complete>
   </div>
 </template>
 

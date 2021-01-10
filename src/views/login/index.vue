@@ -5,8 +5,8 @@
 	</mu-avatar>
     <div class="input-wrap">
   	  <div class="input-div">
-	    <mu-auto-complete color="black" v-model="username" icon="person" placeholder="学号"></mu-auto-complete>
-		<mu-auto-complete type="password" color="black" v-model="pwd" icon="lock" placeholder="密码"></mu-auto-complete>
+	    <mu-auto-complete color="black" v-model="username" icon=":iconfont icon-person" placeholder="学号"></mu-auto-complete>
+		<mu-auto-complete type="password" color="black" v-model="pwd" icon=":iconfont icon-lock" placeholder="密码"></mu-auto-complete>
 	  </div>
       <mu-button ref="loginRef" :class="loginClass" round color="red" @click="loginClick">
         <span v-if="!isClick">登录</span>
@@ -17,7 +17,7 @@
 	</div>
     <div class="alert-icon">
       <mu-button @click="onAlert" icon>
-        <mu-icon class="icon" value="send"></mu-icon>
+        <mu-icon class="icon" value=":iconfont icon-send"></mu-icon>
       </mu-button>
     </div>
   </div>
@@ -180,6 +180,11 @@ export default{
   left: 44%;
 }
 .icon{
+  font-size: 1.7rem;
   color: white;
+}
+.has-icon >>> .mu-icon{
+  font-size: 1.7rem;
+  margin-top: -0.6vh;
 }
 </style>
