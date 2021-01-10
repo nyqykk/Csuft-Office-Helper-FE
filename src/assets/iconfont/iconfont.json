@@ -1,0 +1,93 @@
+{
+  "id": "2319414",
+  "name": "csuft-helper",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4114399",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "12348005",
+      "name": "priority_high_24px_rounded",
+      "font_class": "priority_high_px_rounded",
+      "unicode": "eda5",
+      "unicode_decimal": 60837
+    },
+    {
+      "icon_id": "7009039",
+      "name": "warning",
+      "font_class": "warning",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "7826085",
+      "name": "close",
+      "font_class": "baseline-close-px",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "490331",
+      "name": "lock",
+      "font_class": "lock",
+      "unicode": "ec26",
+      "unicode_decimal": 60454
+    },
+    {
+      "icon_id": "1410456",
+      "name": "person",
+      "font_class": "person",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "1842121",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5305662",
+      "name": "chevron-left",
+      "font_class": "chevron-left",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "6988141",
+      "name": "crop-original",
+      "font_class": "crop-original",
+      "unicode": "eba0",
+      "unicode_decimal": 60320
+    },
+    {
+      "icon_id": "7685258",
+      "name": "send",
+      "font_class": "send",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
+      "icon_id": "14206070",
+      "name": "alternate_email-24px",
+      "font_class": "alternate_email-24px",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "15617244",
+      "name": "update",
+      "font_class": "update",
+      "unicode": "e8b8",
+      "unicode_decimal": 59576
+    }
+  ]
+}
