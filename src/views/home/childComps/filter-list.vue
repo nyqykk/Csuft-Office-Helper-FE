@@ -1,20 +1,93 @@
 <template>
   <div class="filter-wrap">
-    <mu-auto-complete color="black" v-model="inputMsg"  icon=":iconfont icon-search" placeholder="课程名关键字"></mu-auto-complete>
+    <mu-auto-complete
+      color="black"
+      v-model="inputMsg"
+      icon=":iconfont icon-search"
+      placeholder="课程名关键字"
+    >
+    </mu-auto-complete>
+
+    <mu-button flat class="filter-button" small @click="onDialogVisible" ref="filterButton" >
+      <mu-icon class="filter-icon" value=":iconfont icon-filter1"></mu-icon>
+    </mu-button>
+
+    <mu-dialog title="筛选" width="360" scrollable :open.sync="dialogVisible">
+      <check-box
+        description="按课程结果筛选"
+        :options="checkboxOption.studyStatus"
+        @onChange="(optionList) => onOptionChange(optionList, 'statusList')"
+      />
+      <check-box
+        description="按学年筛选"
+        :options="checkboxOption.time"
+        @onChange="(optionList) => onOptionChange(optionList, 'timeList')"
+      />
+    </mu-dialog>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default{
+  mounted() {
+    this.GetOptions();
+  },
+
+  components:{
+    checkBox: () => import('@/components/common/checkbox')
+  },
+
   data(){
   	return {
-		inputMsg: ''
+      inputMsg: '',
+      dialogVisible: false,
+      checkboxOption: {
+        studyStatus: [],
+        time: [],
+      },
+      statusList: [],
+      timeList: [],
 	}
   },
+
+  computed:{
+    ...mapState(['gradeList', 'optionalCoursePosition']),
+  },
+
+  methods:{
+    GetOptions(){
+      const keys = ['studyStatus', 'time'];
+      const requiredCourse = this.gradeList.slice(0, this.optionalCoursePosition);
+      requiredCourse.map(gradeItem => {
+        keys.map(key => {
+          this.checkOptions(gradeItem[key], key) ? '' : this.checkboxOption[key].push(gradeItem[key]);
+        })
+      })
+    },
+
+    checkOptions(gradeValue, key){
+      return this.checkboxOption[key].includes(gradeValue);
+    },
+
+    onDialogVisible(){
+      this.dialogVisible = true;
+    },
+
+    onOptionChange(optionList, listName){
+      this[listName] =  optionList;
+      this.$bus.$emit('getFilter', {
+        studyStatus: this.statusList,
+        time: this.timeList
+      });
+    }
+  },
+
   watch:{
     inputMsg:{
 	  handler(newMsg){
-	    this.$bus.$emit('useFilter', newMsg);
+	    this.$bus.$emit('getFilter', newMsg);
 	  }
 	}
   }
@@ -41,13 +114,22 @@ export default{
   padding-top: 1vh;
   opacity: 0.8;
   color: white;
+  display: flex;
 }
 .mu-input{
   display: flex;
   align-items: center;
 }
-.filter-wrap >>> .mu-input-icon{
-  top: 50%;
-  transform: translateY(-50%);
+.filter-icon{
+  font-size: 1.3rem;
+  color: white;
+}
+.filter-button{
+  min-width: 0;
+  width: 10vw;
+  height: 10vw;
+  position: relative;
+  top: 0.3vh;
+  right: 0.7vw;
 }
 </style>

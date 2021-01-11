@@ -14,6 +14,7 @@ export default{
       this.$store.commit('getBackgroundImg', backgroundImage);
     }
   },
+
   computed:{
     ...mapState(['backgroundImage'])
   }

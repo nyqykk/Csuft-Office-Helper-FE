@@ -51,23 +51,30 @@ export default {
       dialogVisible: false,
     }
   },
+
   computed: {
     ...mapState(['originBackGround'])
   },
+
   methods: {
     ...mapMutations(['getBackgroundImg']),
+
     onChangeVisible(){
       this.open = true;
     },
+
     backClick(){
       this.$router.push('/login');
     },
+
     changeDialogVisible(){
       this.$emit('onDialogVisible');
     },
+
     editBackGround(){
       this.$refs.upload.click();
     },
+
     getFile(){
       const file = this.$refs.upload.files[0];
       let reader = new FileReader();
@@ -78,6 +85,7 @@ export default {
         this.open = false;
       })
     },
+
     async resetBackGround(){
       let { result } = await this.$confirm('确定要重置吗?', '提示');
       if(result){
@@ -93,6 +101,7 @@ export default {
 <style scoped>
 .mu-list{
   padding: 0;
+  overflow-x: visible;
 }
 .mu-appbar, .mu-appbar >>> .mu-appbar-title, .mu-appbar >>> .mu-button{
   padding: 0;
@@ -122,7 +131,7 @@ export default {
 }
 .mu-item-title{
   text-align: center;
-  margin-left: -12vw;
+  margin-left: -15vw;
 }
 .mu-list >>> .mu-item{
   color: white;

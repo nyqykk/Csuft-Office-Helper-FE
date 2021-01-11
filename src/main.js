@@ -23,6 +23,13 @@ Vue.use(Toast, {
   errorIcon: ':iconfont icon-warning'              // 错误信息图标
 });
 
+router.beforeEach((to, from, next)=>{
+  if(to.meta.title){
+    document.title = to.meta.title
+  }
+  next();
+})
+
 new Vue({
   router,
   store,

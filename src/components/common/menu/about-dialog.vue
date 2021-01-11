@@ -26,11 +26,13 @@ export default {
       default: false
     },
   },
+
   data(){
     return{
       announce: `声明:此项目并未收集同学们的教务处账号等个人隐私,只是为了方便大家,有任何问题可联系 QQ:1327719263`,
     }
   },
+
   methods:{
     onClose(){
       this.$emit('onClose');

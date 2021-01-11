@@ -37,6 +37,7 @@ export default{
       tips: '如有任何问题可联系QQ1327719263',
 	}
   },
+
   computed:{
     ...mapState(['msg']),
     loginClass(){
@@ -55,9 +56,11 @@ export default{
       return classNames;
     }
   },
+
   methods:{
     ...mapMutations(['resetGradeList']),
     ...mapActions(['asyncGradeList']),
+
 	async loginClick(){
       if(this.isClick !== 1){
         this.isClick = 1;
@@ -86,6 +89,7 @@ export default{
           }
       }
 	},
+
     moveTo(e){
       return (e) => {
         if(e.target === e.currentTarget && this.transitionFlag) {
@@ -94,10 +98,12 @@ export default{
         }
       }
     },
+
     onAlert(){
       this.$toast.warning(this.tips)
     }
   },
+
   beforeDestroy() {
     this.$refs.hackRef.$el.removeEventListener('transitionend', this.moveTo(event));
   }

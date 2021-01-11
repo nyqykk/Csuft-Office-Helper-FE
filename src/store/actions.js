@@ -3,7 +3,7 @@ export async function asyncGradeList(store, userInfo){
   let res = await axios.post('http://119.29.4.93:5000',{
 		username: userInfo.username,
 		pwd: userInfo.pwd
-	}, { timeout: 5000})
+	}, { timeout: 8000})
 	let data = {};
 	if(res.data.code === 400){
 		data.msg = res.data.msg;
