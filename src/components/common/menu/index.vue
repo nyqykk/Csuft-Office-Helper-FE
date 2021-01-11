@@ -17,6 +17,7 @@ export default {
 	  dialogVisible: false,
 	}
   },
+
   methods:{
     onClose(){
 	  this.dialogVisible = false;
@@ -25,6 +26,7 @@ export default {
       this.dialogVisible = true;
     }
   },
+
   components:{
 	MenuDrawer: () => import('@/components/common/menu/menu-drawer'),
 	AboutDialog: () => import('@/components/common/menu/about-dialog')

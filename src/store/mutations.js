@@ -3,6 +3,7 @@ export function getGradeList(state, payload){
     state.msg = payload.msg;
   }else{
     state.gradeList = payload.gradeList;
+    state.optionalCoursePosition = payload.position;
   }
 }
 

@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     gradeList: null,
+    optionalCoursePosition: 0,
     backgroundImage,
     originBackGround: backgroundImage,
     msg: ''

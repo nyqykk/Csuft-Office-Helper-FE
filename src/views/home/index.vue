@@ -11,6 +11,7 @@
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
   name: 'Home',
   created() {
@@ -21,16 +22,19 @@ export default {
 	  this.homeTransitionEnd = true;
 	})
   },
+
   data(){
   	return{
 	  homeTransitionEnd: false,
 	}
   },
+
   components: {
     List: () => import('@/views/home/childComps/list'),
     FilterList: () => import('@/views/home/childComps/filter-list'),
-    Menu: () => import('@/components/common/menu/menu')
+    Menu: () => import('@/components/common/menu')
   },
+
   computed:{
     ...mapState(['gradeList']),
     getClass(){

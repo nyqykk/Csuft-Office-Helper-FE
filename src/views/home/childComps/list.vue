@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div v-show="gradeList" class="avg-grade">
-	  总平均分: {{ averGrade.toFixed(2) }}
-	</div>
-
 	<div class="item-container">
       <div
         class="wrap"
@@ -31,16 +27,22 @@
 
 <script>
 import { mapState } from 'vuex'
+
 export default{
   name: 'List',
   mounted() {
-    this.$bus.$on('useFilter', (filterConfig) => {
-	  this.filterGradeList = this.filterGrade(filterConfig);
+    this.$bus.$on('getFilter', (filterConfig) => {
+      if(typeof filterConfig === 'string'){
+        this.filterConfig.inputContent = filterConfig;
+      }else{
+        this.filterConfig.optionList = filterConfig;
+      }
+      this.filterGradeList = this.filterGrade();
 	})
   },
 
-  destroyed() {
-    this.$bus.$off('useFilter');
+  beforeDestroy() {
+    this.$bus.$off('getFilter');
   },
 
   methods:{
@@ -48,51 +50,47 @@ export default{
       return grade < 60 ? 'rgb(255, 85, 0)' : 'rgb(130,188,163)';
 	},
 
-	isNumber(obj) {
-	  return typeof obj === 'number' && !isNaN(obj);
+	filterGrade(){
+	  const initialList = this.gradeList.filter((gradeItem) => this.getInputFilter(gradeItem));
+	  const finalList = this.getOptionsFilter(initialList);
+	  return finalList;
 	},
 
-	filterGrade(gradeConfig){
-	  let result = this.gradeList.filter((gradeItem) => {
-	  	return ((gradeItem.className.toLowerCase().indexOf(gradeConfig.toLowerCase()) !== -1) || (gradeItem.className.toLowerCase().indexOf(gradeConfig.toUpperCase()) !== -1));
-	  })
-	  return result;
-	},
+    getInputFilter(gradeItem){
+      const { inputContent } = this.filterConfig;
+      return (gradeItem.className.toLowerCase().indexOf(inputContent.toLowerCase()) !== -1) || (gradeItem.className.toLowerCase().indexOf(inputContent.toUpperCase()) !== -1);
+    },
+
+    getOptionsFilter(initialList){
+      const { optionList } = this.filterConfig;
+      if(!optionList.studyStatus.length && !optionList.time.length){
+        return initialList;
+      }
+      const keys = ['studyStatus', 'time'];
+      return initialList.filter(listItem => keys.every(key => !optionList[key].length ? true : optionList[key].includes(listItem[key])));
+    }
   },
+
   computed:{
     ...mapState(['gradeList']),
-    averGrade(){
-      if(this.gradeList){
-	    let num = 0;
-	    let total = this.gradeList.reduce((pre, cur) => {
-	    if(this.isNumber(Number(cur.grade)) || cur.grade === '及格'){
-	      if(cur.grade === ''){
-	        return pre;
-	      }
-	      if(cur.grade === '及格'){
-	        cur.grade = 60
-	      }
-	      num++;
-	      return pre + Number(cur.grade);
-	    }}, 0)
-	    return total/num;
-      }
-    },
   },
 
   data(){
     return{
 	  filterGradeList: null,
+      filterConfig:{
+	    inputContent: '',
+        optionList: {
+          studyStatus: [],
+          time: []
+        },
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.avg-grade{
-  color: white;
-  margin-left: 10px;
-}
 .item-container{
   padding: 0 10px;
 }

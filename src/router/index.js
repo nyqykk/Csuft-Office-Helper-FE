@@ -11,12 +11,14 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/login')
+    component: () => import('@/views/login'),
+    meta: { hidden: true, title:"林科大教务处小助手" }
   },
   {
     path: '/home',
     name: 'Home',
-    component: () => import('@/views/home')
+    component: () => import('@/views/home'),
+    meta: { hidden: true, title:"林科大教务处小助手" }
   }
 ]
 
