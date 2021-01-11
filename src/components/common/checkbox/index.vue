@@ -1,18 +1,16 @@
 <template>
-  <keep-alive>
-    <div>
-      <div>{{ description }}</div>
-      <mu-flex class="select-control-row" :key="option" v-for="option in options">
-        <mu-checkbox
-          :value="option"
-          :label="option"
-          v-model="selectList"
-          @change="onChange"
-        >
-        </mu-checkbox>
-      </mu-flex>
-    </div>
-  </keep-alive>
+  <div>
+    <div>{{ description }}</div>
+    <mu-flex class="select-control-row" :key="option" v-for="option in options">
+      <mu-checkbox
+        :value="option"
+        :label="option"
+        v-model="selectList"
+        @change="onChange"
+      >
+      </mu-checkbox>
+    </mu-flex>
+  </div>
 </template>
 
 <script>
