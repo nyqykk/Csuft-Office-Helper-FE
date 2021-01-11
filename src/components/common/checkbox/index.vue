@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <div>{{ description }}</div>
-    <mu-flex class="select-control-row" :key="option" v-for="option in options">
-      <mu-checkbox
-        :value="option"
-        :label="option"
-        v-model="selectList"
-        @change="onChange"
-      >
-      </mu-checkbox>
-    </mu-flex>
-  </div>
-
+  <keep-alive>
+    <div>
+      <div>{{ description }}</div>
+      <mu-flex class="select-control-row" :key="option" v-for="option in options">
+        <mu-checkbox
+          :value="option"
+          :label="option"
+          v-model="selectList"
+          @change="onChange"
+        >
+        </mu-checkbox>
+      </mu-flex>
+    </div>
+  </keep-alive>
 </template>
 
 <script>
 export default {
   name: "index",
+  mounted() {
+    this.selectList = this.originList;
+  },
   data(){
     return{
       selectList: []
@@ -32,6 +36,10 @@ export default {
       type: Array,
       default: () => []
     },
+    originList:{
+      type: Array,
+      default: () => []
+    }
   },
 
   methods:{
