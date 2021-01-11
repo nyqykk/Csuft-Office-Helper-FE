@@ -109,7 +109,7 @@ export default{
   margin-right: 2vw;
   padding-right: 10vw;
   min-height: 0;
-  height: 5.2vh;
+  height: 2.5rem;
   font-size: 1rem;
 }
 .filter-wrap{
@@ -123,16 +123,23 @@ export default{
   display: flex;
   align-items: center;
 }
+.mu-input >>> .mu-input-icon{
+  top: 0;
+}
 .filter-icon{
-  font-size: 1.3rem;
+  font-size: 1.5rem !important;
   color: white;
+}
+.mu-input >>> .mu-input-icon{
+  font-size: 1.3rem;
+  top: 0.2rem;
 }
 .filter-button{
   min-width: 0;
   width: 10vw;
   height: 10vw;
   position: relative;
-  top: 0.3vh;
+  top: 0.05rem;
   right: 0.7vw;
 }
 </style>
