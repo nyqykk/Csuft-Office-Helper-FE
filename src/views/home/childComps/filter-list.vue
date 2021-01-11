@@ -16,11 +16,14 @@
       <check-box
         description="按课程结果筛选"
         :options="checkboxOption.studyStatus"
+        :originList="statusList"
         @onChange="(optionList) => onOptionChange(optionList, 'statusList')"
       />
+
       <check-box
         description="按学年筛选"
         :options="checkboxOption.time"
+        :originList="timeList"
         @onChange="(optionList) => onOptionChange(optionList, 'timeList')"
       />
     </mu-dialog>

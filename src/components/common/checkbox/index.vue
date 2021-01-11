@@ -11,12 +11,14 @@
       </mu-checkbox>
     </mu-flex>
   </div>
-
 </template>
 
 <script>
 export default {
   name: "index",
+  mounted() {
+    this.selectList = this.originList;
+  },
   data(){
     return{
       selectList: []
@@ -32,6 +34,10 @@ export default {
       type: Array,
       default: () => []
     },
+    originList:{
+      type: Array,
+      default: () => []
+    }
   },
 
   methods:{
