@@ -12,7 +12,7 @@
       <mu-icon class="filter-icon" value=":iconfont icon-filter1"></mu-icon>
     </mu-button>
 
-    <mu-dialog title="筛选" width="360" scrollable :open.sync="dialogVisible">
+    <mu-dialog scrollable width="360" :open.sync="dialogVisible">
       <check-box
         description="按课程结果筛选"
         :options="checkboxOption.studyStatus"
@@ -161,11 +161,11 @@ export default{
 }
 .filter-button{
   min-width: 0;
-  width: 10vw;
-  height: 10vw;
+  width: 3rem;
+  height: 3rem;
   position: relative;
   top: 0.05rem;
-  right: 0.7vw;
+  right: 0.3rem;
 }
 .reset-button{
   margin-top: 1.5vh;
