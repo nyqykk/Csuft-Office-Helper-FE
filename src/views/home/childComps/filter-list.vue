@@ -21,11 +21,20 @@
       />
 
       <check-box
+        description="按课程类型筛选"
+        :options="checkboxOption.courseType"
+        :originList="courseList"
+        @onChange="(optionList) => onOptionChange(optionList, 'courseList')"
+      />
+
+      <check-box
         description="按学年筛选"
         :options="checkboxOption.time"
         :originList="timeList"
         @onChange="(optionList) => onOptionChange(optionList, 'timeList')"
       />
+
+      <mu-button class="reset-button" color="primary" @click="resetOptions">重置</mu-button>
     </mu-dialog>
   </div>
 </template>
@@ -49,9 +58,11 @@ export default{
       checkboxOption: {
         studyStatus: [],
         time: [],
+        courseType: ['必修', '选修'],
       },
       statusList: [],
       timeList: [],
+      courseList: [],
 	}
   },
 
@@ -80,9 +91,23 @@ export default{
 
     onOptionChange(optionList, listName){
       this[listName] =  optionList;
+      this.emitOptions();
+    },
+
+    resetOptions(){
+      /* checkbox的originList有引用问题 不能直接赋值为[] */
+      this.statusList.splice(0, this.statusList.length);
+      this.timeList.splice(0, this.timeList.length);
+      this.courseList.splice(0, this.courseList.length);
+      this.emitOptions();
+      this.dialogVisible = false;
+    },
+
+    emitOptions(){
       this.$bus.$emit('getFilter', {
         studyStatus: this.statusList,
-        time: this.timeList
+        time: this.timeList,
+        courseType: this.courseList
       });
     }
   },
@@ -141,5 +166,8 @@ export default{
   position: relative;
   top: 0.05rem;
   right: 0.7vw;
+}
+.reset-button{
+  margin-top: 1.5vh;
 }
 </style>

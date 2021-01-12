@@ -35,7 +35,9 @@ export default{
       if(typeof filterConfig === 'string'){
         this.filterConfig.inputContent = filterConfig;
       }else{
-        this.filterConfig.optionList = filterConfig;
+        this.filterConfig.courseType = filterConfig['courseType'];
+        this.filterConfig.optionList['studyStatus'] = filterConfig['studyStatus'];
+        this.filterConfig.optionList['time'] = filterConfig['time'];
       }
       this.filterGradeList = this.filterGrade();
 	})
@@ -45,14 +47,29 @@ export default{
     this.$bus.$off('getFilter');
   },
 
+  data(){
+    return{
+      filterGradeList: null,
+      filterConfig:{
+        inputContent: '',
+        optionList: {
+          studyStatus: [],
+          time: []
+        },
+        courseType: [],
+      }
+    }
+  },
+
   methods:{
     calGrade(grade){
       return grade < 60 ? 'rgb(255, 85, 0)' : 'rgb(130,188,163)';
 	},
 
 	filterGrade(){
-	  const initialList = this.gradeList.filter((gradeItem) => this.getInputFilter(gradeItem));
-	  const finalList = this.getOptionsFilter(initialList);
+      const initialList = this.getCourseTypeFilter;
+	  const processList = initialList.filter((gradeItem) => this.getInputFilter(gradeItem));
+	  const finalList = this.getOptionsFilter(processList);
 	  return finalList;
 	},
 
@@ -68,25 +85,32 @@ export default{
       }
       const keys = ['studyStatus', 'time'];
       return initialList.filter(listItem => keys.every(key => !optionList[key].length ? true : optionList[key].includes(listItem[key])));
-    }
+    },
   },
 
   computed:{
-    ...mapState(['gradeList']),
-  },
+    ...mapState(['gradeList', 'optionalCoursePosition']),
 
-  data(){
-    return{
-	  filterGradeList: null,
-      filterConfig:{
-	    inputContent: '',
-        optionList: {
-          studyStatus: [],
-          time: []
-        },
+    getCourseTypeFilter(){
+      const { courseType } = this.filterConfig;
+      let initialList = [];
+      /* 如果没有课程类型筛选则返回原成绩列表 */
+      let flag = 0;
+      if(courseType.includes('必修')){
+        initialList = initialList.concat(this.gradeList.slice(0, this.optionalCoursePosition));
+        flag = 1;
       }
+      if(courseType.includes('选修')){
+        initialList = initialList.concat(this.gradeList.slice(this.optionalCoursePosition));
+        flag = 1;
+      }
+      if(!flag){
+        initialList = this.gradeList;
+      }
+      flag = 0;
+      return initialList;
     }
-  }
+  },
 }
 </script>
 
