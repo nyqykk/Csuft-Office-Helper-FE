@@ -6,7 +6,7 @@
     <div class="input-wrap">
   	  <div class="input-div">
 	    <mu-auto-complete color="black" v-model="username" icon=":iconfont icon-person" placeholder="学号"></mu-auto-complete>
-		<mu-auto-complete type="password" color="black" v-model="pwd" icon=":iconfont icon-lock" placeholder="密码"></mu-auto-complete>
+		<mu-auto-complete type="password" color="black" v-model="pwd" icon=":iconfont icon-lock" placeholder="教务处密码"></mu-auto-complete>
 	  </div>
       <mu-button ref="loginRef" :class="loginClass" round color="red" @click="loginClick">
         <span v-if="!isClick">登录</span>

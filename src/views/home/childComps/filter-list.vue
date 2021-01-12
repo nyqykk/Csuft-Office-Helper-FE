@@ -12,7 +12,7 @@
       <mu-icon class="filter-icon" value=":iconfont icon-filter1"></mu-icon>
     </mu-button>
 
-    <mu-dialog title="筛选" width="360" scrollable :open.sync="dialogVisible">
+    <mu-dialog scrollable width="360" :open.sync="dialogVisible">
       <check-box
         description="按课程结果筛选"
         :options="checkboxOption.studyStatus"
@@ -21,11 +21,20 @@
       />
 
       <check-box
+        description="按课程类型筛选"
+        :options="checkboxOption.courseType"
+        :originList="courseList"
+        @onChange="(optionList) => onOptionChange(optionList, 'courseList')"
+      />
+
+      <check-box
         description="按学年筛选"
         :options="checkboxOption.time"
         :originList="timeList"
         @onChange="(optionList) => onOptionChange(optionList, 'timeList')"
       />
+
+      <mu-button class="reset-button" color="primary" @click="resetOptions">重置</mu-button>
     </mu-dialog>
   </div>
 </template>
@@ -49,9 +58,11 @@ export default{
       checkboxOption: {
         studyStatus: [],
         time: [],
+        courseType: ['必修', '选修'],
       },
       statusList: [],
       timeList: [],
+      courseList: [],
 	}
   },
 
@@ -80,9 +91,23 @@ export default{
 
     onOptionChange(optionList, listName){
       this[listName] =  optionList;
+      this.emitOptions();
+    },
+
+    resetOptions(){
+      /* checkbox的originList有引用问题 不能直接赋值为[] */
+      this.statusList.splice(0, this.statusList.length);
+      this.timeList.splice(0, this.timeList.length);
+      this.courseList.splice(0, this.courseList.length);
+      this.emitOptions();
+      this.dialogVisible = false;
+    },
+
+    emitOptions(){
       this.$bus.$emit('getFilter', {
         studyStatus: this.statusList,
-        time: this.timeList
+        time: this.timeList,
+        courseType: this.courseList
       });
     }
   },
@@ -136,10 +161,13 @@ export default{
 }
 .filter-button{
   min-width: 0;
-  width: 10vw;
-  height: 10vw;
+  width: 3rem;
+  height: 3rem;
   position: relative;
   top: 0.05rem;
-  right: 0.7vw;
+  right: 0.3rem;
+}
+.reset-button{
+  margin-top: 1.5vh;
 }
 </style>
