@@ -164,7 +164,7 @@ export default{
   width: 3rem;
   height: 3rem;
   position: relative;
-  top: 0.05rem;
+  top: -0.1rem;
   right: 0.3rem;
 }
 .reset-button{
