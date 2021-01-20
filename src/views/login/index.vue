@@ -87,7 +87,7 @@ export default{
             if(e.response?.status == 429){
               this.$toast.error('请求频繁,请于一分钟后尝试');
             }else{
-              this.$toast.error('网路有波动成绩溜走了');
+              this.$toast.error('网络有波动成绩溜走了');
             }
             this.isClick = 0;
           }
