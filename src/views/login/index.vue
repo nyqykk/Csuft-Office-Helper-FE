@@ -73,18 +73,22 @@ export default{
           if(!this.msg){
             this.showHacker = true;
             new Promise((resolve) => {
-            this.$refs.hackRef.$el.addEventListener('transitionend', this.moveTo(event));
-            resolve();
+              this.$refs.hackRef.$el.addEventListener('transitionend', this.moveTo(event));
+              resolve();
             }).then(() => {
               this.isClick = 2;
               this.loginSuccess = true;
             })
             }else{
               this.isClick = 0;
-              this.$toast.error('账号错误或登录太频繁');
+            this.$toast.error('账号或密码错误');
             }
           }catch(e){
-            this.$toast.error('网路有波动成绩溜走了');
+            if(e.response?.status == 429){
+              this.$toast.error('请求频繁,请于一分钟后尝试');
+            }else{
+              this.$toast.error('网络有波动成绩溜走了');
+            }
             this.isClick = 0;
           }
       }

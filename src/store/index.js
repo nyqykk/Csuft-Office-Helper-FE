@@ -12,7 +12,8 @@ export default new Vuex.Store({
     optionalCoursePosition: 0,
     backgroundImage,
     originBackGround: backgroundImage,
-    msg: ''
+    msg: '',
+    code: '',
   },
   mutations: {
     getGradeList,
